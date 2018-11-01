@@ -17,6 +17,9 @@ body {
   margin-left: 5px;
   margin-right: 5px; }
 
+#mainDesc {
+  text-align: left; }
+
 @media screen and (max-width: 400px) {
   .shrinkhide {
     display: none; } }
