@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio of Ethan Arns</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Spider squisher -->
+<style>
+	.liame {
+		display:none;
+	}
+	#vidpicker {
+		font-size: 20px;
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	#reel-vid {
+		padding-top: 0;
+	}
+</style>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myDefaultNavbar1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand" href=".">Ethan Arns</a> </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="myDefaultNavbar1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href=".">Home <span class="sr-only">(current)</span></a></li>
+		<li class="active"><a href="http://www.imdb.com/name/nm9448959/">IMDb <span class="sr-only">(current)</span></a></li>
+		<li class="active"><a href="https://github.com/ethanarns">GitHub <span class="sr-only">(current)</span></a></li>
+        <!--<li><a role="button" id="butt_render">Rendering reel</a></li>-->
+				<!--<li><a role="button" href="docs/resume-vfx-2-9-17.docx">Visual Effects Resume</a></li>-->
+				<!--<li><a role="button" href="docs/resume-modeling-2-9-17.docx">3D Modeling Resume</a></li>-->
+      </ul>
+		</div>
+  </div>
+</nav>
+
+<section>
+	<div class="jumbotron text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs12">
+					<h1>Hello, I'm Ethan</h1>
+					<p>I bring the unreal to reality.</p>
+					<p>
+						<a class="btn btn-primary btn-lg" role="button" id="butt">
+							Play demo reel »
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h1>About me</h1>
+        <p>I am a 3D Visual Effects artist, graduated with a BA in Animation from Loyola Marymount University's School of Film and Television. The intersection of art and technology has always been my passion and creative outlet. I have created the entirety of visual effects of over 8 films, as well as designed and 3D modeled for solo and group videogame projects. My professional experience includes rig removal, rotoscoping, compositing, and motion graphics. In addition, I also have work in virtual reality games and videos.</p>
+		<p>In addition, I also have professional experience as a full stack Web Developer. I minored in Computer Science, and have a solid knowledge of Java, Javascript, C++, C-Sharp, Unreal 4, and Python. I taught Python and Java coding to students for 3 years as an assistant instructor. My diverse set of skills in programming and artistic design coupled with my great passion and work ethic makes me a driven artist eager to make his mark on the world.</p>
+		<p id="programs"> <!-- Will get replaced by icons --></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+	<div class="container well" id="reel-vid">
+		<div id="vidpicker"><a role="button" id="playVFX">Visual Effects reel</a> | <a role="button" id="play3D">3D Demo reel</a></div>
+		<div class="embed-responsive embed-responsive-16by9">
+			<div id="playerFrame"></div><!-- Will get replaced by Vimeo player -->
+		</div>
+	</div>
+</section>
+
+<hr>
+<section class="section well">
+	<div class="container">
+		<h3 class="text-center">CONTACT</h3>
+		<address class="text-center">
+			To get in touch, email me at
+			<!--7270 West Manches<span class="liame">@asdf.com</span>ter Ave, 5-604<br>
+			Los <span class="liame">NEVER GONNA GIVE YOU UP</span>Angeles, CA, 90045<br>--->
+			<a href="mailto:">contac<span class="liame">fuckspamspiders@yahoo.com</span>t@<span class="liame">
+			@hotmail.com</span>ethanarn<span class="liame">@yahoo.com</span>s.com<span class="liame">
+			@yahoo.com</span><br></a>
+		</address>
+	</div>
+</section>
+
+<footer class="text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<p>Copyright &copy; 2018 Ethan Arns &middot; <a href="https://code.ethanarns.com" >My coding work</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Javascript libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+	// Load icon list
+	var programs = document.getElementById("programs");
+	for(let i = 1; i <= 13; i++) {
+		let newIconElement = document.createElement("img");
+		newIconElement.src = "./static/images/icons/" + i + ".png";
+		newIconElement.width = 50;
+		programs.appendChild(newIconElement);
+	}
+	// Load web player
+	var Player;
+
+	document.getElementById("playerFrame").className = "embed-responsive-item";
+
+	// Scroll + play buttons
+	$.fn.scrollView = function () {
+		return this.each(function () {
+			$('html, body').animate({
+				scrollTop: $(this).offset().top
+			}, 1000);
+		});
+	}
+	$('#butt').click(function (event) {
+		event.preventDefault();
+		$('#reel-vid').scrollView();
+		Player.play();
+	});
+	$('#playVFX').click(function (event) {
+		event.preventDefault();
+		$('#reel-vid').scrollView();
+		Player.loadVideo(260186917);
+	});
+	$('#play3D').click(function (event) {
+		event.preventDefault();
+		$('#reel-vid').scrollView();
+		Player.loadVideo(260189949);
+	});
+
+	// Initial Options for Vimeo Player
+	var playerOptions = {
+        id: 260186917,
+        width: 640,
+		api: true
+    };
+
+	// Load Player
+	Player = new Vimeo.Player('playerFrame', playerOptions);
+</script>
+</body>
+</html>

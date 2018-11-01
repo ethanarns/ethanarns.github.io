@@ -1,0 +1,28 @@
+/* Scss Document */
+$footer-height: 60px;
+html {
+    position:relative;
+    min-height:100%;
+}
+body {
+    // Offset bottom
+    margin-bottom: $footer-height;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  line-height: $footer-height;
+}
+
+.lead {
+    margin-left:5px;
+    margin-right:5px;
+}
+
+@media screen and (max-width: 400px) {
+    .shrinkhide {
+        display: none;
+    }
+}
