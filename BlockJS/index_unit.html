@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Block.js</title>
+    <style>
+        html, body, canvas { margin: 0; padding: 0; width: 100%; height: 100%;}
+    </style>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.6.2.css">
+</head>
+<body>
+    <script src="./babylon.custom.js"></script>
+    <script src="./components/Globals.js"></script>
+    <script src="./components/Player.js"></script>
+    <script src="./components/Brick.js"></script>
+    <script src="./components/Utils.js"></script>
+    <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+
+    <canvas id="render-canvas"></canvas>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.6.2.js"></script>
+    <script>
+        // Generic setup
+        var canvas = document.getElementById("render-canvas");
+        // We only want to see the Unit testing
+        canvas.style.display = "none";
+        var engine = new BABYLON.Engine(canvas);
+        // Debug mode enabled, but don't draw grid
+        var scene = Utils.generateScene(engine, true, false);
+        // And don't show debugLayer
+        scene.debugLayer.hide();
+        var World = Utils.generateWorld();
+        var UI = Utils.generateUI();
+        engine.runRenderLoop(function() {
+            scene.render();
+            player1.movement();
+
+            pulse += 0.1;
+            player1.tempBrick._mesh.material.alpha = Math.sin(pulse) / 4 + 0.50;
+        });
+        var player1 = new Player("Player1", { spawnPoint: new BABYLON.Vector3(0, 15, -20) }, scene);
+
+        QUnit.test("Initial test", function(assert) {
+            assert.ok(scene, "Scene created successfully")
+            assert.ok(isDebugMode, "Debug mode activated by generateScene()")
+            assert.notOk(scene.debugLayer._inspector, "Debug layer disabled");
+            assert.ok(UI, "UI created")
+            assert.ok(UI.advancedTexture, "Advanced Texture loaded");
+            assert.ok(UI.Audio.jumpSound, "Sounds loaded properly");
+        });
+
+        QUnit.test("Player test", function(assert) {
+            player1.moveTo(1, 2, 3);
+            assert.equal(1, player1.root.position.x, "Player moves to set position");
+        });
+
+        QUnit.test("Brick test", function(assert) {
+            // Note setting of position below ground
+            var testBrick = new Brick("TestBrick", 1, 1, 1,
+                new BABYLON.Vector3(0, -1, 0), currentColor, World);
+            assert.ok(testBrick, "Brick created successfully");
+            assert.notOk(Brick.canPlaceBrick(testBrick, false), "TestBrick cannot be placed underground");
+            testBrick._mesh.position.y = 1;
+            assert.notOk(testBrick.isObjectBelow(), "TestBrick cannot be placed floating");
+            testBrick._mesh.position.y = 0;
+            assert.ok(Brick.canPlaceBrick(testBrick, true), "TestBrick can be placed on the ground");
+            assert.ok(testBrick._mesh._isDisposed, "TestBrick resources deleted when second parameter of canPlaceBrick() true");
+            var newBrick = Brick.placeBrick(new BABYLON.Vector3(0, 0, 0));
+            assert.ok(newBrick, "Brick placed with placeBrick() valid");
+        });
+        
+    </script>
+</body>
+</html>
