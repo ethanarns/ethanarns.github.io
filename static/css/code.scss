@@ -7,6 +7,8 @@ html {
 body {
     // Offset bottom
     margin-bottom: $footer-height;
+    color: rgb(211, 211, 211);
+    background-color: rgb(17, 17, 17);
 }
 
 .footer {
@@ -18,12 +20,20 @@ body {
 }
 
 .lead {
-    margin-left:5px;
-    margin-right:5px;
+    margin-left:10px;
+    margin-right:10px;
 }
 
 #mainDesc {
     text-align: left;
+}
+
+header {
+    background-color: rgb(44, 44, 44) !important;
+    h1 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 @media screen and (max-width: 400px) {
